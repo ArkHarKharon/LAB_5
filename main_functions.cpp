@@ -107,5 +107,4 @@ void main_menu(arr& main_array, vec& main_vector, data& data_array)
 		}
 
 	} while( answer != EXIT);
-
 }
