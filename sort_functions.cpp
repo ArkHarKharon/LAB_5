@@ -154,3 +154,8 @@ void shell_sort(vec& main_vector, long& swap, long& compare, seconds& time)
 	auto end = std::chrono::steady_clock::now();
 	time = std::chrono::duration_cast<std::chrono::seconds>(end - start);
 }
+
+void none(vec& main_vector, long& swap, long& compare, seconds& time)
+{
+
+}

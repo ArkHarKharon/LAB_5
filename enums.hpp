@@ -2,7 +2,7 @@
 
 enum Menu
 {
-	SORT,
+	SORT = 1,
 	PRINT,
 	COMPARE,
 	EXIT,
