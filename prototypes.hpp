@@ -7,7 +7,7 @@
 
 using vec = std::vector<int>;
 using Sort_fcn = std::function<void(vec& main_vector, long& swaps, long& compares,seconds& time)>;
-using seconds = std::chrono::duration<long long>;
+using seconds = std::chrono::duration<long long,std::milli>;
 using data = std::array<Sort_data, 7>;
 
 typedef std::array<Sort_fcn, 7> arr;
@@ -29,8 +29,7 @@ void data_reset(data& data_array);
 void sort_set(arr& main_array, data& data_array);
 void sorting(arr& sort_array, vec& main_vector, data& data_array);
 void compare(data const& data_array);
-
-
+void settings(vec& main_vector, int len, int width);
 
 void main_menu(arr& sort_array, vec& main_vector, data& data_array);
 

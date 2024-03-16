@@ -18,7 +18,7 @@ void bubble_sort(vec& main_vector, long& swap, long& compare, seconds& time)
 		}
 	}
 	auto end = std::chrono::steady_clock::now();
-	time = std::chrono::duration_cast<std::chrono::seconds>(end - start);
+	time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 }
 
 void shaker_sort(vec& main_vector, long& swap, long& compare, seconds& time)
@@ -53,7 +53,7 @@ void shaker_sort(vec& main_vector, long& swap, long& compare, seconds& time)
 		i++;
 	}
 	auto end = std::chrono::steady_clock::now();
-	time = std::chrono::duration_cast<std::chrono::seconds>(end - start);
+	time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 }
 
 void gnome_sort(vec& main_vector, long& swap, long& compare, seconds& time)
@@ -81,7 +81,7 @@ void gnome_sort(vec& main_vector, long& swap, long& compare, seconds& time)
 		}
 	}
 	auto end = std::chrono::steady_clock::now();
-	time = std::chrono::duration_cast<std::chrono::seconds>(end - start);
+	time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 }
 
 void select_sort(vec& main_vector, long& swap, long& compare, seconds& time)
@@ -108,7 +108,7 @@ void select_sort(vec& main_vector, long& swap, long& compare, seconds& time)
 		}
 	}
 	auto end = std::chrono::steady_clock::now();
-	time = std::chrono::duration_cast<std::chrono::seconds>(end - start);
+	time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 }
 
 void insert_sort(vec& main_vector, long& swap, long& compare, seconds& time)
@@ -129,7 +129,7 @@ void insert_sort(vec& main_vector, long& swap, long& compare, seconds& time)
 		main_vector.at(j + 1) = key;
 	}
 	auto end = std::chrono::steady_clock::now();
-	time = std::chrono::duration_cast<std::chrono::seconds>(end - start);
+	time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 }
 
 void shell_sort(vec& main_vector, long& swap, long& compare, seconds& time)
@@ -152,7 +152,7 @@ void shell_sort(vec& main_vector, long& swap, long& compare, seconds& time)
 		}
 	}
 	auto end = std::chrono::steady_clock::now();
-	time = std::chrono::duration_cast<std::chrono::seconds>(end - start);
+	time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 }
 
 void none(vec& main_vector, long& swap, long& compare, seconds& time)

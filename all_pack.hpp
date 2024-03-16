@@ -14,7 +14,7 @@
 
 using vec = std::vector<int>;
 using Sort_fcn = std::function<void(vec &main_vector, long& swaps, long& compares,seconds& time)>;
-using seconds = std::chrono::duration<long long>;
+using seconds = std::chrono::duration<long long,std::milli>;
 using data = std::array<Sort_data, 7>;
 
 typedef std::array<Sort_fcn, 7> arr;

@@ -31,8 +31,10 @@ void print_matrix(vec& main_vector, int len)
 	}
 	std::cout << "\n\n\t\t\t    ---------------МАТРИЦА---------------\n\n\n\n";
 
+	std::cin.ignore(32000, '\n');
 	std::cout << "Нажми Enter чтобы продолжить...";
 	std::cin.get();
+	system("cls");
 }
 
 void random_set(vec& main_vector, int min, int max)
@@ -66,7 +68,7 @@ void sorting(arr& sort_array, vec& main_vector, data& data_array)
 		system("cls");
 
 		std::cout
-			<< "\t\t\t ВЫБОР СОРТИРОВКИ\n\n"
+			<< "\t\t\t ----------------ВЫБОР СОРТИРОВКИ----------------\n\n"
 			<< "1) Я хочу использовать пузырьковую сортировку\n"
 			<< "2) Я хочу использовать шейкерную сортировку\n"
 			<< "3) Я хочу использовать гномью сортировку\n"
@@ -83,19 +85,23 @@ void sorting(arr& sort_array, vec& main_vector, data& data_array)
 			system("cls");
 			std::cout << "Сортирую...";
 			Sleep(2000);
+
 			Sort_fcn sort_fcn = sort_array.at(answer);
 			sort_fcn(main_vector, data_array.at(answer).swaps, data_array.at(answer).compares, data_array.at(answer).time);
+			data_array.at(answer).num = main_vector.size();
 
 			system("cls");
+			std::cin.ignore(32000, '\n');
 			std::cout
 				<< "Сортировка завершена успешно, данные сохранены!\n\n"
 				<< "Нажмите Enter...";
 			std::cin.get();
-			system("cls");
 		}
+		else if (answer == sort_array.size())
+			break;
 		else std::cout << "Неверный индекс!";
-
 	} while (answer != 7);
+	system("cls");
 }
 
 void sort_set(arr& main_array,data& data_array)
@@ -106,7 +112,7 @@ void sort_set(arr& main_array,data& data_array)
 	data_array.at(SHAKER).sort_name = " Шейкерная";
 	data_array.at(GNOME).sort_name =  " Гномья";
 	data_array.at(SELECT).sort_name = " Выбором";
-	data_array.at(INSERT).sort_name = " \tВставкой";
+	data_array.at(INSERT).sort_name = " Вставкой";
 	data_array.at(SHELL).sort_name =  " Шелла";
 }
 
@@ -114,25 +120,95 @@ void compare(data const& data_array)
 {
 	system("cls");
 
-	for (int i = 1; i < data_array.size(); i++)
-		std::cout << data_array.at(i).sort_name << "\t\t";
-	std::cout << "\n";
+	for (const Sort_data element : data_array)
+	{
+		if (element.sort_name == "none")
+			continue;
 
-	for (int i = 1; i < data_array.size(); i++)
-		std::cout << data_array.at(i).compares << " ср.\t\t";
-	std::cout << "\n";
+		std::cout
+			<< "\t\t" << element.sort_name << '\n'
+			<< "Кол-во элементов: " << element.num << '\n'
+			<< "Кол-во сравнений: " << element.compares << '\n'
+			<< "Кол-во перестановок: " << element.compares << '\n'
+			<< "Время сортировки: " << element.time.count() << "мc\n\n";
 
-	for (int i = 1; i < data_array.size(); i++)
-		std::cout<< data_array.at(i).swaps << " пер.\t\t";
-	std::cout << "\n";
-
-	for (int i = 1; i < data_array.size(); i++)
-		std::cout << data_array.at(i).time.count() << "с\t\t\t";
-
-	std::cin.ignore(32000, '\n');
-	std::cout << "\n\nНажмите Enter...";
+	}
+	std::cin.ignore(32000, 'n');
+	std::cout << "Нажмите Enter...";
 	std::cin.get();
-	system("cls");
+}
+
+void settings(vec& main_vector, int len, int width)
+{
+	int answer_settings{ 0 };
+	int answer_color{ 0 };
+	int answer_searching{ 0 };
+
+	int volume{ len * width };
+	int new_len{}; int new_width{};
+	int& temp_len{ len };
+	int& temp_width{ width };
+	int& new_volume{ volume };
+
+	do
+	{
+		std::cout
+			<< "\t\t\t    ----------------НАСТРОЙКИ----------------\n"
+			<< "1) Я хочу поменять язык\n"
+			<< "2) Я хочу поменять цвет меню\n"
+			<< "3) Я хочу сгенерировать новые значения элементов матрицы\n"
+			<< "4) Я хочу изменить размер матрицы (на свой страх и риск)\n"
+			<< "5) Я хочу вернуться в основное меню\n\n"
+			<< "Выбор: ";
+
+		std::cin >> answer_settings;
+
+		switch (answer_settings)
+		{
+		case(LANGUAGE):
+			system("cls");
+			std::cout << "Меняю язык...";
+			Sleep(4000);
+			std::cout << "АХАХАХА, хрен тебе, а не смена языка)))))";
+			Sleep(3000);
+			system("cls");
+			break;
+
+		case(GENERATE):
+			system("cls");
+			std::cout << "Генерирую новую матрицу";
+			Sleep(4000);
+			random_set(main_vector, 1, 999);
+			std::cout << "Готово!";
+			Sleep(3000);
+			system("cls");
+			break;
+
+		case(RESIZE):
+			system("cls");
+			std::cout
+				<< "\t\t\t    ----------------ИЗМЕНЕНИЕ МАТРИЦЫ----------------\n"
+				<< "Значения матрицы будут перезаписаны!\n"
+				<< "Введи новые длину и ширину матрицы через пробел: ";
+			std::cin >> new_len >> new_width;
+
+			temp_len = new_len;
+			temp_width = new_width;
+			new_volume = new_len * new_width;
+
+			main_vector.resize(new_volume);
+			random_set(main_vector, 1, 999);
+
+			system("cls");
+			std::cout << "Меняю размер матрицы...";
+			Sleep(4000);
+			std::cout << "Готово!";
+			system("cls");
+			break;
+
+		case(MAIN_MENU): break;
+		}
+	} while (answer_settings != MAIN_MENU);
 }
 
 void main_menu(arr& sort_array, vec& main_vector, data& data_array)
@@ -152,10 +228,11 @@ void main_menu(arr& sort_array, vec& main_vector, data& data_array)
 	do
 	{
 		std::cout
-			<< "\t\t\tМЕНЮ\n"
+			<< "\t\t\t----------------МЕНЮ----------------\n"
 			<< "1) Я хочу выбрать сортировку\n"
 			<< "2) Я хочу вывести матрицу элементов\n"
 			<< "3) Я хочу сравнить сортировки\n"
+			<< "4) Я хочу открыть настройки\n"
 			<< "4) Я хочу выйти!\n\n"
 			<< "Выбор: ";
 		std::cin >> answer;
@@ -165,6 +242,7 @@ void main_menu(arr& sort_array, vec& main_vector, data& data_array)
 		case(SORT):		sorting(sort_array, main_vector,data_array);	 break;
 		case(PRINT):	print_matrix(main_vector, len);					 break;
 		case(COMPARE):  compare(data_array);							 break;
+		case(SETTINGS): settings(main_vector, len, width);				 break;
 		case(EXIT):														 break;
 		default: std::cout << "Неверный индекс!";						 break;
 		}
